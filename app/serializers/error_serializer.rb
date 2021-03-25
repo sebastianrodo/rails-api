@@ -1,1 +1,2 @@
-class ErrorSerializer < ActiveModel::Serializer::ErrorSerializer; end
+class ErrorSerializer < ActiveModel::Serializer::ErrorSerializer
+end

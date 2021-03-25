@@ -1,18 +1,15 @@
 class ArticlesController < ApplicationController
-  include Paginable
-
   skip_before_action :authorize!, only: [:index, :show]
 
   def index
-    paginated = paginate(Article.recent)
-    render_collection(paginated)
+    articles = Article.recent.
+      page(params[:page]).
+      per(params[:per_page])
+    render json: articles
   end
 
   def show
-    article = Article.find(params[:id])
-    render json: serializer.new(article)
-  rescue ActiveRecord::RecordNotFound => e
-    render json: { message: e.message, detail: "Here will be nicely formatted response" }
+    render json: Article.find(params[:id])
   end
 
   def create
@@ -27,7 +24,7 @@ class ArticlesController < ApplicationController
 
   def update
     article = current_user.articles.find(params[:id])
-    article.update!(article_params)
+    article.update_attributes!(article_params)
     render json: article, status: :ok
   rescue ActiveRecord::RecordNotFound
     authorization_error
@@ -43,10 +40,6 @@ class ArticlesController < ApplicationController
     head :no_content
   rescue
     authorization_error
-  end
-
-  def serializer
-    ArticleSerializer
   end
 
   private

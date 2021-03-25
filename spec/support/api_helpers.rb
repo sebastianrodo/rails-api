@@ -1,6 +1,9 @@
+require 'pry'
 module ApiHelpers
   def json
-    JSON.parse(response.body).deep_symbolize_keys
+    body_parsed = JSON.parse(response.body)
+    body_parsed = body_parsed.first if body_parsed.is_a?(Array)
+    body_parsed.deep_symbolize_keys
   end
 
   def json_data

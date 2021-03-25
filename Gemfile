@@ -26,6 +26,9 @@ gem 'jsonapi-serializer'
 gem 'jsom-pagination'
 gem 'jsonapi_errors_handler'
 gem 'active_model_serializers', '~> 0.10.12'
+gem 'kaminari'
+gem "octokit", "~> 4.0"
+gem 'bcrypt'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 

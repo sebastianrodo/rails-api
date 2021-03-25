@@ -1,4 +1,3 @@
-class AccessTokenSerializer
-  include JSONAPI::Serializer
+class AccessTokenSerializer < ActiveModel::Serializer
   attributes :id, :token
 end
