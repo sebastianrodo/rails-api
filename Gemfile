@@ -31,6 +31,7 @@ gem 'bcrypt'
 # gem 'rack-cors'
 
 group :production do
+  # Use pg
   gem 'pg'
 end
 
